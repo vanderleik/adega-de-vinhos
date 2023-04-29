@@ -1,6 +1,8 @@
 package adega.de.vinhos.adegadevinhos.controller;
 
 import adega.de.vinhos.adegadevinhos.domain.Vinho;
+import adega.de.vinhos.adegadevinhos.requests.VinhoPostRequestBody;
+import adega.de.vinhos.adegadevinhos.requests.VinhoPutRequestBody;
 import adega.de.vinhos.adegadevinhos.service.VinhoService;
 import adega.de.vinhos.adegadevinhos.util.DateUtil;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +31,12 @@ public class VinhoController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Vinho> findById(@PathVariable long id) {
-        return ResponseEntity.ok(vinhoService.findById(id));
+        return ResponseEntity.ok(vinhoService.findByIdOrThrowBadRequestException(id));
     }
 
     @PostMapping
-    public ResponseEntity<Vinho> save(@RequestBody Vinho vinho){
-        return new ResponseEntity(vinhoService.save(vinho), HttpStatus.CREATED);
+    public ResponseEntity<Vinho> save(@RequestBody VinhoPostRequestBody vinhoPutRequestBody){
+        return new ResponseEntity(vinhoService.save(vinhoPutRequestBody), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -44,8 +46,8 @@ public class VinhoController {
     }
 
     @PutMapping
-    public ResponseEntity<Vinho> replace(@RequestBody Vinho vinho) {
-        vinhoService.replace(vinho);
+    public ResponseEntity<Vinho> replace(@RequestBody VinhoPutRequestBody vinhoPutRequestBody) {
+        vinhoService.replace(vinhoPutRequestBody);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

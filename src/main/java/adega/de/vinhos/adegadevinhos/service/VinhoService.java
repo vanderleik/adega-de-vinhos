@@ -1,46 +1,45 @@
 package adega.de.vinhos.adegadevinhos.service;
 
 import adega.de.vinhos.adegadevinhos.domain.Vinho;
+import adega.de.vinhos.adegadevinhos.repository.VinhoRepository;
+import adega.de.vinhos.adegadevinhos.requests.VinhoPostRequestBody;
+import adega.de.vinhos.adegadevinhos.requests.VinhoPutRequestBody;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
+@RequiredArgsConstructor
 public class VinhoService {
 
-    private static List<Vinho> vinhos;
-
-    static {
-        vinhos = new ArrayList<>(List.of(new Vinho(1L, "Branco"),
-                new Vinho(2L, "Tinto"),
-                new Vinho(3L, "Rose"),
-                new Vinho(4L, "Espumante")));
-    }
+    private final VinhoRepository vinhoRepository;
 
     public List<Vinho> listAll() {
-        return vinhos;
+        return vinhoRepository.findAll();
     }
 
-    public Vinho findById(long id) {
-        return vinhos.stream().filter(vinho -> vinho.getId().equals(id)).findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Vinho não encontrado"));
+    public Vinho findByIdOrThrowBadRequestException(long id) {
+        return vinhoRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Vinho não encontrado"));
     }
 
-    public Vinho save(Vinho vinho) {
-        vinho.setId(ThreadLocalRandom.current().nextLong(5, 1000));
-        vinhos.add(vinho);
-        return vinho;
+    public Vinho save(VinhoPostRequestBody vinhoPostRequestBody) {
+        return vinhoRepository.save(Vinho.builder().tipo(vinhoPostRequestBody.getTipo()).build());
     }
 
     public void delete(long id) {
-        vinhos.remove(findById(id));
+        vinhoRepository.delete(findByIdOrThrowBadRequestException(id));
     }
 
-    public void replace(Vinho vinho) {
-        delete(vinho.getId());
-        vinhos.add(vinho);
+    public void replace(VinhoPutRequestBody vinhoPutRequestBody) {
+        Vinho savedVinho = findByIdOrThrowBadRequestException(vinhoPutRequestBody.getId());
+        Vinho vinho = Vinho.builder()
+                .id(savedVinho.getId())
+                .tipo(vinhoPutRequestBody.getTipo())
+                .build();
+        vinhoRepository.save(vinho);
     }
 }
