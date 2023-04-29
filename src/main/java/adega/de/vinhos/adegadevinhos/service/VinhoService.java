@@ -40,4 +40,8 @@ public class VinhoService {
         vinho.setId(savedVinho.getId());
         vinhoRepository.save(vinho);
     }
+
+    public List<Vinho> findByTipo(String tipo) {
+        return vinhoRepository.findByTipo(tipo);
+    }
 }

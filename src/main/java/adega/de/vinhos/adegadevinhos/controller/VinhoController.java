@@ -49,4 +49,9 @@ public class VinhoController {
         vinhoService.replace(vinhoDTO);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping(path = "/tipo")
+    public ResponseEntity<List<Vinho>> findByTipo(@RequestParam(required = false) String tipo) {
+        return ResponseEntity.ok(vinhoService.findByTipo(tipo));
+    }
 }
