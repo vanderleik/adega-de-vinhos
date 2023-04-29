@@ -2,6 +2,7 @@ package adega.de.vinhos.adegadevinhos.service;
 
 import adega.de.vinhos.adegadevinhos.domain.Vinho;
 import adega.de.vinhos.adegadevinhos.dto.VinhoDTO;
+import adega.de.vinhos.adegadevinhos.mapper.VinhoMapper;
 import adega.de.vinhos.adegadevinhos.repository.VinhoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class VinhoService {
     }
 
     public Vinho save(VinhoDTO vinhoDTO) {
-        return vinhoRepository.save(Vinho.builder().tipo(vinhoDTO.getTipo()).build());
+        return vinhoRepository.save(VinhoMapper.INSTANCE.toVinho(vinhoDTO));
     }
 
     public void delete(long id) {
@@ -35,10 +36,8 @@ public class VinhoService {
 
     public void replace(VinhoDTO vinhoDTO) {
         Vinho savedVinho = findByIdOrThrowBadRequestException(vinhoDTO.getId());
-        Vinho vinho = Vinho.builder()
-                .id(savedVinho.getId())
-                .tipo(vinhoDTO.getTipo())
-                .build();
+        Vinho vinho = VinhoMapper.INSTANCE.toVinho(vinhoDTO);
+        vinho.setId(savedVinho.getId());
         vinhoRepository.save(vinho);
     }
 }
