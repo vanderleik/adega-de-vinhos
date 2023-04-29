@@ -34,4 +34,8 @@ public class VinhoService {
         vinhos.add(vinho);
         return vinho;
     }
+
+    public void delete(long id) {
+        vinhos.remove(findById(id));
+    }
 }

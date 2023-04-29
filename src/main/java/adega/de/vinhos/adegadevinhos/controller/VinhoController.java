@@ -36,4 +36,10 @@ public class VinhoController {
     public ResponseEntity<Vinho> save(@RequestBody Vinho vinho){
         return new ResponseEntity(vinhoService.save(vinho), HttpStatus.CREATED);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        vinhoService.delete(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
