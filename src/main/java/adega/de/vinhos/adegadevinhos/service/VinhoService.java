@@ -38,4 +38,9 @@ public class VinhoService {
     public void delete(long id) {
         vinhos.remove(findById(id));
     }
+
+    public void replace(Vinho vinho) {
+        delete(vinho.getId());
+        vinhos.add(vinho);
+    }
 }

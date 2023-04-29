@@ -42,4 +42,10 @@ public class VinhoController {
         vinhoService.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    @PutMapping
+    public ResponseEntity<Vinho> replace(@RequestBody Vinho vinho) {
+        vinhoService.replace(vinho);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
