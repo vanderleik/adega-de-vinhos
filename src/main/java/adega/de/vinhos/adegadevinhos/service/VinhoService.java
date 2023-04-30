@@ -8,6 +8,7 @@ import adega.de.vinhos.adegadevinhos.repository.VinhoRepository;
 import adega.de.vinhos.adegadevinhos.util.TranslationConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class VinhoService {
                 .orElseThrow(() -> new BadRequestException(TranslationConstants.VINHO_NAO_ENCONTRADO));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public Vinho save(VinhoDTO vinhoDTO) {
         return vinhoRepository.save(VinhoMapper.INSTANCE.toVinho(vinhoDTO));
     }

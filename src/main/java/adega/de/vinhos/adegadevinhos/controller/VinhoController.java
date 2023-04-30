@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class VinhoController {
     }
 
     @PostMapping
-    public ResponseEntity<Vinho> save(@RequestBody VinhoDTO vinhoDTO){
+    public ResponseEntity<Vinho> save(@RequestBody @Valid VinhoDTO vinhoDTO){
         return new ResponseEntity(vinhoService.save(vinhoDTO), HttpStatus.CREATED);
     }
 
