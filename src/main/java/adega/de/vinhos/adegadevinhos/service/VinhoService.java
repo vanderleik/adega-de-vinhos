@@ -7,6 +7,8 @@ import adega.de.vinhos.adegadevinhos.mapper.VinhoMapper;
 import adega.de.vinhos.adegadevinhos.repository.VinhoRepository;
 import adega.de.vinhos.adegadevinhos.util.TranslationConstants;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +20,8 @@ public class VinhoService {
 
     private final VinhoRepository vinhoRepository;
 
-    public List<Vinho> listAll() {
-        return vinhoRepository.findAll();
+    public Page<Vinho> listAll(Pageable pageable) {
+        return vinhoRepository.findAll(pageable);
     }
 
     public Vinho findByIdOrThrowBadRequestException(long id) {
