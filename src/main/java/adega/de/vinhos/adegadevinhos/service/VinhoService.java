@@ -2,12 +2,12 @@ package adega.de.vinhos.adegadevinhos.service;
 
 import adega.de.vinhos.adegadevinhos.domain.Vinho;
 import adega.de.vinhos.adegadevinhos.dto.VinhoDTO;
+import adega.de.vinhos.adegadevinhos.exception.BadRequestException;
 import adega.de.vinhos.adegadevinhos.mapper.VinhoMapper;
 import adega.de.vinhos.adegadevinhos.repository.VinhoRepository;
+import adega.de.vinhos.adegadevinhos.util.TranslationConstants;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class VinhoService {
 
     public Vinho findByIdOrThrowBadRequestException(long id) {
         return vinhoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Vinho não encontrado"));
+                .orElseThrow(() -> new BadRequestException(TranslationConstants.VINHO_NAO_ENCONTRADO));
     }
 
     public Vinho save(VinhoDTO vinhoDTO) {
