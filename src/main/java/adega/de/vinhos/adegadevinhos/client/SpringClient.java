@@ -3,8 +3,7 @@ package adega.de.vinhos.adegadevinhos.client;
 import adega.de.vinhos.adegadevinhos.domain.Vinho;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -14,6 +13,7 @@ import java.util.List;
 public class SpringClient {
 
     public static void main(String[] args) {
+        //===============GET=====================
         //Faço o mapeamento para um serviço externo (usando o próprio serviço neste caso apenas como exemplo)
         ResponseEntity<Vinho> entity = new RestTemplate().getForEntity("http://localhost:8080/vinhos/2", Vinho.class);
         log.info(entity);
@@ -31,5 +31,25 @@ public class SpringClient {
                 new ParameterizedTypeReference<List<Vinho>>() {
         });
         log.info(exchange.getBody());
+
+        //===============POST=====================
+
+        Vinho vinhoLicorosoForEntity = Vinho.builder().tipo("Licoroso for Entity").build();
+        ResponseEntity<Vinho> vinhoLicorosoForEntitySaved = new RestTemplate().postForEntity("http://localhost:8080/vinhos/", vinhoLicorosoForEntity, Vinho.class);
+        log.info("Vinho for entity salvo {}", vinhoLicorosoForEntitySaved);
+
+        Vinho vinhoLicorosoExchange = Vinho.builder().tipo("Licoroso Exchange").build();
+        ResponseEntity<Vinho> vinhosLicorososExchangeSaved = new RestTemplate().exchange("http://localhost:8080/vinhos/",
+                HttpMethod.POST,
+                new HttpEntity<>(vinhoLicorosoExchange, createJsonHeader()),
+                Vinho.class);
+        log.info("Vinho exchange salvo {}", vinhosLicorososExchangeSaved);
+
+    }
+
+    private static HttpHeaders createJsonHeader(){
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return httpHeaders;
     }
 }
