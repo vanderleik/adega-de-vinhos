@@ -33,7 +33,6 @@ public class SpringClient {
         log.info(exchange.getBody());
 
         //===============POST=====================
-
         Vinho vinhoLicorosoForEntity = Vinho.builder().tipo("Licoroso for Entity").build();
         ResponseEntity<Vinho> vinhoLicorosoForEntitySaved = new RestTemplate().postForEntity("http://localhost:8080/vinhos/", vinhoLicorosoForEntity, Vinho.class);
         log.info("Vinho for entity salvo {}", vinhoLicorosoForEntitySaved);
@@ -44,6 +43,24 @@ public class SpringClient {
                 new HttpEntity<>(vinhoLicorosoExchange, createJsonHeader()),
                 Vinho.class);
         log.info("Vinho exchange salvo {}", vinhosLicorososExchangeSaved);
+
+        //===============PUT=====================
+        Vinho vinhoToBeUpdated = vinhosLicorososExchangeSaved.getBody();
+        vinhoToBeUpdated.setTipo("Licoroso Changed");
+
+        ResponseEntity<Void> vinhosLicorososExchangeUpdated = new RestTemplate().exchange("http://localhost:8080/vinhos/",
+                HttpMethod.PUT,
+                new HttpEntity<>(vinhoToBeUpdated, createJsonHeader()),
+                Void.class);
+        log.info("Vinho exchange alterado {}", vinhosLicorososExchangeUpdated);
+
+        //===============DELETE=====================
+        ResponseEntity<Void> vinhosLicorososExchangeDeleted = new RestTemplate().exchange("http://localhost:8080/vinhos/{id}",
+                HttpMethod.DELETE,
+                null,
+                Void.class,
+                vinhoToBeUpdated.getId());
+        log.info("Vinho exchange deletado {}", vinhosLicorososExchangeDeleted);
 
     }
 
