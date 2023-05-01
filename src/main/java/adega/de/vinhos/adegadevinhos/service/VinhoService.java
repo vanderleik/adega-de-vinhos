@@ -48,4 +48,8 @@ public class VinhoService {
     public List<Vinho> findByTipo(String tipo) {
         return vinhoRepository.findByTipo(tipo);
     }
+
+    public List<Vinho> listAllNonPageable() {
+        return vinhoRepository.findAll();
+    }
 }

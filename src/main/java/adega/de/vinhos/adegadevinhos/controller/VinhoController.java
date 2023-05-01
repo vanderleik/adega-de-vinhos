@@ -31,6 +31,12 @@ public class VinhoController {
         return ResponseEntity.ok(vinhoService.listAll(pageable));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Vinho>> listAll() {
+        log.info(defaultUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        return ResponseEntity.ok(vinhoService.listAllNonPageable());
+    }
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<Vinho> findById(@PathVariable long id) {
         return ResponseEntity.ok(vinhoService.findByIdOrThrowBadRequestException(id));
