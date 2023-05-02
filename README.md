@@ -1,8 +1,7 @@
-# adega-de-vinhos
- Adega de vinhos com Spring Boot
+<h1>Adega de vinhos com Spring Boot</h1>
 
-**Projeto em construção**
+Trata-se de uma API construída com Spring Boot. Ela faz o CRUD, persistindo as informações em um banco de dados MySql, que roda em um container no Docker.
 
-<h3>Algumas informações enquanto crio o projeto:</h3>
-Estou usando o Docker para subir um container do MySql. Assim não preciso rodar o MySql localmente.
-Estou usando o DBeaver para gerenciar o banco de dados.
+O projeto possui testes unitários usando H2 e Mockito.
+
+Criei um CI para que, ao receber um novo commit na main, sejam rodados vários testes a fim de garantir que as novas alterações não quebram nada do que já existe no projeto.
