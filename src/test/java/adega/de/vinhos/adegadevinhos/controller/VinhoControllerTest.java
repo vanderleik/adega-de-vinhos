@@ -88,8 +88,8 @@ class VinhoControllerTest {
         assertNotNull(vinhos);
         assertFalse(vinhos.isEmpty());
         assertEquals(1, vinhos.size());
-        assertEquals(vinhos.get(0).getId(), vinhos.get(0).getId());
-        assertEquals(vinhos.get(0).getTipo(), vinhos.get(0).getTipo());
+        assertEquals(createValidVinhoTinto().getId(), vinhos.get(0).getId());
+        assertEquals(createValidVinhoTinto().getTipo(), vinhos.get(0).getTipo());
     }
 
     @Test
