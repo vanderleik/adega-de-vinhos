@@ -4,7 +4,6 @@ import adega.de.vinhos.adegadevinhos.domain.Vinho;
 import adega.de.vinhos.adegadevinhos.dto.VinhoDTO;
 import adega.de.vinhos.adegadevinhos.service.VinhoService;
 import adega.de.vinhos.adegadevinhos.util.DateUtil;
-import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +24,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-@Log4j2
 class VinhoControllerTest {
 
     @InjectMocks
