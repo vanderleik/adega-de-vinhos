@@ -43,6 +43,7 @@ public class VinhoController {
     }
 
     @PostMapping
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Vinho> save(@RequestBody @Valid VinhoDTO vinhoDTO){
         return new ResponseEntity(vinhoService.save(vinhoDTO), HttpStatus.CREATED);
     }
