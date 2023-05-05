@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added/Adicionado para novos recursos.
-*
+* Adicionados enums contendo 9 estilos de vinho e suas especificações. 
 
 ### Changed/Modificado para alterações em recursos existentes.
 *
