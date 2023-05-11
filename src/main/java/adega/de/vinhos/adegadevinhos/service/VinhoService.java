@@ -6,7 +6,7 @@ import adega.de.vinhos.adegadevinhos.exception.BadRequestException;
 import adega.de.vinhos.adegadevinhos.mapper.VinhoMapper;
 import adega.de.vinhos.adegadevinhos.repository.VinhoRepository;
 import adega.de.vinhos.adegadevinhos.util.TranslationConstants;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class VinhoService {
 
-    private final VinhoRepository vinhoRepository;
+    @Autowired
+    private VinhoRepository vinhoRepository;
 
     public Page<Vinho> listAll(Pageable pageable) {
         return vinhoRepository.findAll(pageable);
