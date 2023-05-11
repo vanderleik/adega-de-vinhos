@@ -1,10 +1,8 @@
 package adega.de.vinhos.adegadevinhos.dto;
 
 import adega.de.vinhos.adegadevinhos.util.TranslationConstants;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class VinhoDTO {
