@@ -7,23 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added/Adicionado para novos recursos.
+### Added
 *
 
-### Changed/Modificado para alterações em recursos existentes.
+### Changed
 *
 
-### Deprecated/Obsoleto para recursos que serão removidos nas próximas versões.
+### Deprecated
 *
 
-### Removed/Removido para recursos removidos nesta versão.
+### Removed
 *
 
-### Fixed/Corrigido para qualquer correção de bug.
+### Fixed
 *
 
-### Security/Segurança em caso de vulnerabilidades.
-* 
+### Security
+*
+
+## [0.0.2] - 2023-11-05
+
+### Changed
+* Alterada a versão do Spring Boot para 3.0.4
+* Alterada a versão do Java para 17
 
 ## [0.0.1] - 2023-04-05
 
