@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +30,10 @@ public class AdegaController {
     public ResponseEntity<Page<Adega>> list(Pageable pageable) {
         log.info(defaultUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(adegaService.listAll(pageable));
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Adega> findById(@PathVariable long id) {
+        return ResponseEntity.ok(adegaService.findByIdOrThrowBadRequestException(id));
     }
 }

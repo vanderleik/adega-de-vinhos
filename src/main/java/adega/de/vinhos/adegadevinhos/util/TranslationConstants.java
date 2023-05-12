@@ -9,4 +9,5 @@ public class TranslationConstants {
     public static final String CHECK_FIELDS_ERROR = "Verifique o preenchimento do(s) campo(s)";
 
     public static final String NOME_ADEGA_NOT_NULL = "O nome da adega não pode ser nulo";
+    public static final String ADEGA_NAO_ENCONTRADA = "Adega não encontrada";
 }

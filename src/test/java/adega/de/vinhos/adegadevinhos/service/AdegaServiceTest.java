@@ -1,7 +1,9 @@
 package adega.de.vinhos.adegadevinhos.service;
 
 import adega.de.vinhos.adegadevinhos.domain.Adega;
+import adega.de.vinhos.adegadevinhos.exception.BadRequestException;
 import adega.de.vinhos.adegadevinhos.repository.AdegaRepository;
+import adega.de.vinhos.adegadevinhos.util.TranslationConstants;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +17,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -43,6 +46,26 @@ class AdegaServiceTest {
         assertEquals(createAdegaDeCasa().getId(), adegas.toList().get(0).getId());
         assertEquals(createAdegaDoEscritorio().getNome(), adegas.toList().get(1).getNome());
         assertEquals(createAdegaDaPraia().getCapacidade(), adegas.toList().get(2).getCapacidade());
+    }
+
+    @Test
+    @DisplayName("Ao passar um id, deve retornar uma adega")
+    void testFindById(){
+        when(adegaRepository.findById(1L)).thenReturn(Optional.of(createAdegaDeCasa()));
+
+        Adega adega = assertDoesNotThrow(() -> adegaService.findByIdOrThrowBadRequestException(1L));
+        assertNotNull(adega);
+        assertEquals(createAdegaDeCasa().getId(), adega.getId());
+        assertEquals(createAdegaDeCasa().getNome(), adega.getNome());
+        assertEquals(createAdegaDeCasa().getCapacidade(), adega.getCapacidade());
+    }
+
+    @Test
+    @DisplayName("Ao passar um id que não tem no banco de dados, deve retornar uma exceção")
+    void testFindByIdThrowBadRequestException(){
+        when(adegaRepository.findById(4L)).thenThrow(new BadRequestException(TranslationConstants.ADEGA_NAO_ENCONTRADA));
+        BadRequestException exception = assertThrows(BadRequestException.class, () -> adegaService.findByIdOrThrowBadRequestException(4L));
+        assertEquals(TranslationConstants.ADEGA_NAO_ENCONTRADA, exception.getMessage());
     }
 
     private Adega createAdegaDeCasa() {
