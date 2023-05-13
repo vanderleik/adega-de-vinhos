@@ -20,7 +20,7 @@ jobs:
 #      - name: start mysql
 #        run: sudo /etc/init.d/mysql start
       - name: using postgresql
-         run: psql postgres://postgres:postgres@localhost:5432/postgres
+        run: sudo /etc/init.d/postgres start
         
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
