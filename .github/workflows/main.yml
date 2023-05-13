@@ -10,26 +10,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     # Service containers to run with `container-job`
-#    services:
+    services:
       # Label used to access the service container
-#      postgres:
-#        # Docker Hub image
-#        image: postgres
-#        # Provide the password for postgres
-#        env:
-#          PGUSER: postgres
-#          PGPASSWORD: postgres
-#          PGDATABASE: postgres
-#          POSTGRES_USER: postgres
-#          POSTGRES_PASSWORD: postgres
-#          POSTGRES_DB: postgres
-#
-#        # Set health checks to wait until postgres has started
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          PGDATABASE: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -38,8 +38,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build the Docker image
-        run: docker-compose up
       #      - name: start mysql
       #        run: sudo /etc/init.d/mysql start
       #      - name: start postgresql
@@ -49,5 +47,5 @@ jobs:
       #            POSTGRES_PASSWORD: postgres
       #            POSTGRES_PORT: 5432
 
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
+#      - name: Build with Maven
+#        run: mvn --batch-mode --update-snapshots package
