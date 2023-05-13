@@ -20,8 +20,6 @@ jobs:
       
       - name: 'Setup Postgres CLI'
         uses: actions/setup-java@v3
-        description: 'Execute postgres command-line client commands'
-        author: 'Andrew Kanieski'
         branding:
           icon: 'database'
           color: 'blue'
