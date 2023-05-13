@@ -20,16 +20,11 @@ jobs:
       
       - name: 'Setup Postgres CLI'
         uses: actions/setup-java@v3
-        branding:
-          icon: 'database'
-          color: 'blue'
         inputs:
           commands:
-            description: 'Actions to take'
             required: true
             default: 'pg_dump -U user -h 127.0.0.1 -p 5432'
           password:
-            description: 'Password passed to postgres cli'
             required: false
         runs:
           using: 'docker'
