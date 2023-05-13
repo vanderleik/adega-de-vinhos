@@ -22,5 +22,5 @@ jobs:
       - name: start postgresql
         run: sudo service postgresql start
 
-#      - name: Build with Maven
-#        run: mvn --batch-mode --update-snapshots package
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots package
