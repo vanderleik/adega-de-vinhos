@@ -23,6 +23,7 @@ jobs:
         run: sudo service postgresql start
         env:
             POSTGRES_HOST: postgres
+            POSTGRES_PASSWORD: postgres
             POSTGRES_PORT: 5432
 
       - name: Build with Maven
