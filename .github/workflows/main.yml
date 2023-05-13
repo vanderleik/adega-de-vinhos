@@ -21,6 +21,9 @@ jobs:
 #        run: sudo /etc/init.d/mysql start
       - name: start postgresql
         run: sudo service postgresql start
+        env:
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
 
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
