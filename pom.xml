@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>adega.de.vinhos</groupId>
 	<artifactId>adega-de-vinhos</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>adega-de-vinhos</name>
 	<description>Project de adega de vinhos usando o Spring Boot</description>
 	<properties>
@@ -83,6 +83,9 @@
 								<include>**/*Test.*</include>
 								<include>**/*It.*</include>
 							</includes>
+							<excludes>
+								<exclude>**/AdegaDeVinhosApplicationTests.*</exclude>
+							</excludes>
 						</configuration>
 					</plugin>
 				</plugins>
