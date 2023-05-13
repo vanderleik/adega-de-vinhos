@@ -22,7 +22,7 @@ jobs:
 #          PGDATABASE: postgres
 #          POSTGRES_USER: postgres
 #          POSTGRES_PASSWORD: postgres
-          POSTGRES_PASSWORD: password
+          POSTGRES_PASSWORD: 1234567
 #          POSTGRES_DB: postgres
           ports: 5432:5432
 
