@@ -11,30 +11,33 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-      - uses: actions/checkout@v3      
+      - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
-          
-setup-postgresql-ubuntu:
-  if: true # false to skip job during debug
-  name: Setup PostgreSQL on Ubuntu
-  runs-on: ubuntu-latest
-  steps:
-  - name: Start PostgreSQL on Ubuntu
-    run: |
-      sudo systemctl start postgresql.service
-      pg_isready
-  - name: Create scheduler user
-    run: |
-      sudo -u postgres psql --command="CREATE USER scheduler PASSWORD 'somestrong'" --command="\du"
-  - name: Create timetable database
-    run: |
-      sudo -u postgres createdb --owner=scheduler timetable
-      PGPASSWORD=somestrong psql --username=scheduler --host=localhost --list timetable
-
-                    
+      
+      - name: 'Setup Postgres CLI'
+        description: 'Execute postgres command-line client commands'
+        author: 'Andrew Kanieski'
+        branding:
+          icon: 'database'
+          color: 'blue'
+        inputs:
+          commands:
+            description: 'Actions to take'
+            required: true
+            default: 'pg_dump -U user -h 127.0.0.1 -p 5432'
+          password:
+            description: 'Password passed to postgres cli'
+            required: false
+        runs:
+          using: 'docker'
+          image: 'Dockerfile'
+          args:
+            - ${{ inputs.password }}
+            - ${{ inputs.commands }}                    
+      
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
