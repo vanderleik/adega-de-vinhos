@@ -30,12 +30,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - uses: joshuaavalon/flyway-action@v3.0.0
-          with:
+      - name: Flyway Migration
+        uses: joshuaavalon/flyway-action@v3.0.0
+        with:
             url: jdbc:postgresql://postgres:5432/db
             user: user
             password: password
-            - run: echo 'testing'
 
       #      - name: start mysql
       #        run: sudo /etc/init.d/mysql start
