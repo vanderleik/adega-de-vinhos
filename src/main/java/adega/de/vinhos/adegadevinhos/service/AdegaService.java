@@ -26,7 +26,6 @@ public class AdegaService {
         return adegaRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException(TranslationConstants.ADEGA_NAO_ENCONTRADA));
     }
-    //save
 
     @Transactional(rollbackFor = Exception.class)
     public Adega save(AdegaDTO adegaDTO) {
