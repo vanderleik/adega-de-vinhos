@@ -31,7 +31,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Flyway Migration
-      - uses: joshuaavalon/flyway-action@v3.0.0
+        uses: joshuaavalon/flyway-action@v3.0.0
         with:
           url: ${{ secrets.URL_TEST }}
           user: ${{ secrets.USER_TEST }}
