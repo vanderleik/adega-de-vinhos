@@ -9,30 +9,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Service containers to run with `container-job`
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
-        image: postgres:14-alpine
-        # Provide the password for postgres
+        image: postgres
         env:
-          POSTGRES_HOST_AUTH_METHOD: trust
-#          PGUSER: postgres
-#          PGPASSWORD: postgres
-#          PGDATABASE: postgres
-#          POSTGRES_USER: postgres
-#          POSTGRES_PASSWORD: postgres
-#          POSTGRES_PASSWORD: 1234567
-#          POSTGRES_DB: postgres
-#          ports: 5432:5432
-
-        # Set health checks to wait until postgres has started
+          POSTGRES_DB: db
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+#          POSTGRES_HOST_AUTH_METHOD: trust
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -40,15 +30,17 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - uses: joshuaavalon/flyway-action@v3.0.0
+          with:
+            url: jdbc:postgresql://postgres:5432/db
+            user: user
+            password: password
+            - run: echo 'testing'
 
       #      - name: start mysql
       #        run: sudo /etc/init.d/mysql start
 #      - name: start postgresql
 #        run: sudo service postgresql start
-      #        env:
-      #            POSTGRES_HOST: postgres
-      #            POSTGRES_PASSWORD: postgres
-      #            POSTGRES_PORT: 5432
 
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
