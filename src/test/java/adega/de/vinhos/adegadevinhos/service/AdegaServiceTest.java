@@ -1,6 +1,7 @@
 package adega.de.vinhos.adegadevinhos.service;
 
 import adega.de.vinhos.adegadevinhos.domain.Adega;
+import adega.de.vinhos.adegadevinhos.dto.AdegaDTO;
 import adega.de.vinhos.adegadevinhos.exception.BadRequestException;
 import adega.de.vinhos.adegadevinhos.repository.AdegaRepository;
 import adega.de.vinhos.adegadevinhos.util.TranslationConstants;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -66,6 +68,22 @@ class AdegaServiceTest {
         when(adegaRepository.findById(4L)).thenThrow(new BadRequestException(TranslationConstants.ADEGA_NAO_ENCONTRADA));
         BadRequestException exception = assertThrows(BadRequestException.class, () -> adegaService.findByIdOrThrowBadRequestException(4L));
         assertEquals(TranslationConstants.ADEGA_NAO_ENCONTRADA, exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Deve salvar uma adega de vinhos")
+    void testSave() {
+        Adega adegaDeCasa = createAdegaDeCasa();
+        AdegaDTO dto = new AdegaDTO();
+        dto.setId(adegaDeCasa.getId());
+        dto.setNome(adegaDeCasa.getNome());
+        Mockito.when(adegaRepository.save(Mockito.any())).thenReturn(adegaDeCasa);
+
+        Adega adegaCriada = assertDoesNotThrow(() -> adegaService.save(dto));
+        assertNotNull(adegaCriada);
+        assertEquals(adegaDeCasa.getId(), adegaCriada.getId());
+        assertEquals(adegaDeCasa.getNome(), adegaCriada.getNome());
+        assertEquals(adegaDeCasa.getCapacidade(), adegaCriada.getCapacidade());
     }
 
     private Adega createAdegaDeCasa() {

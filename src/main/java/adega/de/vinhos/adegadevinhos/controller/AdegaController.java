@@ -1,17 +1,17 @@
 package adega.de.vinhos.adegadevinhos.controller;
 
 import adega.de.vinhos.adegadevinhos.domain.Adega;
+import adega.de.vinhos.adegadevinhos.dto.AdegaDTO;
 import adega.de.vinhos.adegadevinhos.service.AdegaService;
 import adega.de.vinhos.adegadevinhos.util.DateUtil;
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -35,5 +35,10 @@ public class AdegaController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Adega> findById(@PathVariable long id) {
         return ResponseEntity.ok(adegaService.findByIdOrThrowBadRequestException(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<Adega> save(@RequestBody @Valid AdegaDTO adegaDTO){
+        return new ResponseEntity(adegaService.save(adegaDTO), HttpStatus.CREATED);
     }
 }

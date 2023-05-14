@@ -17,7 +17,6 @@ jobs:
         image: postgres:14-alpine
         # Provide the password for postgres
         env:
-        
           POSTGRES_HOST_AUTH_METHOD: trust
 #          PGUSER: postgres
 #          PGPASSWORD: postgres
@@ -44,8 +43,8 @@ jobs:
 
       #      - name: start mysql
       #        run: sudo /etc/init.d/mysql start
-      - name: start postgresql
-        run: sudo service postgresql start
+#      - name: start postgresql
+#        run: sudo service postgresql start
       #        env:
       #            POSTGRES_HOST: postgres
       #            POSTGRES_PASSWORD: postgres

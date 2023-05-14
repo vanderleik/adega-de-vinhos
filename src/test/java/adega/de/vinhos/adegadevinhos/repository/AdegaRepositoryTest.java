@@ -1,10 +1,12 @@
 package adega.de.vinhos.adegadevinhos.repository;
 
 import adega.de.vinhos.adegadevinhos.domain.Adega;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
+@Log4j2
 class AdegaRepositoryTest {
 
     @Autowired

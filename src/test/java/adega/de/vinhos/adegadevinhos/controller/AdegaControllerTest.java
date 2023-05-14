@@ -1,6 +1,7 @@
 package adega.de.vinhos.adegadevinhos.controller;
 
 import adega.de.vinhos.adegadevinhos.domain.Adega;
+import adega.de.vinhos.adegadevinhos.dto.AdegaDTO;
 import adega.de.vinhos.adegadevinhos.exception.BadRequestException;
 import adega.de.vinhos.adegadevinhos.service.AdegaService;
 import adega.de.vinhos.adegadevinhos.util.DateUtil;
@@ -70,6 +71,23 @@ class AdegaControllerTest {
 
         BadRequestException exception = assertThrows(BadRequestException.class, () -> adegaController.findById(4L).getBody());
         assertEquals(TranslationConstants.ADEGA_NAO_ENCONTRADA, exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Deve salvar uma adega")
+    void testSave(){
+        Adega adegaDeCasa = createAdegaDeCasa();
+        AdegaDTO dto = new AdegaDTO();
+        dto.setId(adegaDeCasa.getId());
+        dto.setNome(adegaDeCasa.getNome());
+        dto.setCapacidade(adegaDeCasa.getCapacidade());
+
+        BDDMockito.when(adegaService.save(ArgumentMatchers.any(AdegaDTO.class))).thenReturn(adegaDeCasa);
+        Adega adegaCriada = assertDoesNotThrow(() -> adegaController.save(dto).getBody());
+        assertNotNull(adegaCriada);
+        assertEquals(adegaDeCasa.getId(), adegaCriada.getId());
+        assertEquals(adegaDeCasa.getNome(), adegaCriada.getNome());
+        assertEquals(adegaDeCasa.getCapacidade(), adegaCriada.getCapacidade());
     }
 
     private Adega createAdegaDeCasa() {
