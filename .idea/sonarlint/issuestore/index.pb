@@ -1,8 +1,6 @@
 
 }
 Msrc/main/java/adega/de/vinhos/adegadevinhos/handler/RestExceptionHandler.java,d\8\d8bcb6cb0389f6fc47191a4b98f74fad416ece7d
-t
-Dsrc/main/java/adega/de/vinhos/adegadevinhos/client/SpringClient.java,f\3\f310eda314a9863531d6196c5ea47dcdb8268ce6
 ~
 Nsrc/test/java/adega/de/vinhos/adegadevinhos/integration/VinhoControllerIt.java,7\2\72b79fdcb2841c17cc9808114ac207c6bd3cbe03
 m
