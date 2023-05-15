@@ -54,8 +54,17 @@ class AdegaRepositoryTest {
         assertEquals(20, adega.get().getCapacidade());
     }
 
+    @Test
+    @DisplayName("Deve deletar uma adega do banco ao passar um id, caso ela exista")
+    void testDelete(){
+        assertDoesNotThrow(() -> adegaRepository.delete(adegaDaPraiaSaved));
+
+        Optional<Adega> adega = adegaRepository.findById(adegaDaPraiaSaved.getId());
+        assertTrue(adega.isEmpty());
+    }
+
+
     //TO-DO
-    //delete
     //replace
     //findByNome
     //listAllNonPageable

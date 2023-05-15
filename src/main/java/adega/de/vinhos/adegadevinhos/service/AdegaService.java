@@ -32,8 +32,11 @@ public class AdegaService {
         return adegaRepository.save(AdegaMapper.INSTANCE.toAdega(adegaDTO));
     }
 
+    public void delete(long id) {
+        adegaRepository.delete(findByIdOrThrowBadRequestException(id));
+    }
+
     //To-do
-    //delete
     //replace
     //findByNome
     //listAllNonPageable

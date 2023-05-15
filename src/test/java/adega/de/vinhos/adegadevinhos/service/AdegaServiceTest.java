@@ -86,6 +86,20 @@ class AdegaServiceTest {
         assertEquals(adegaDeCasa.getCapacidade(), adegaCriada.getCapacidade());
     }
 
+    @Test
+    @DisplayName("Deve deletar uma adega do banco ao passar um id, caso ela exista")
+    void testDelete(){
+        Adega adegaDeCasa = createAdegaDeCasa();
+        AdegaDTO dto = new AdegaDTO();
+        dto.setId(adegaDeCasa.getId());
+        dto.setNome(adegaDeCasa.getNome());
+        Mockito.when(adegaRepository.findById(createAdegaDeCasa().getId())).thenReturn(Optional.of(adegaDeCasa));
+
+        assertDoesNotThrow(() -> adegaService.delete(adegaDeCasa.getId()));
+        Mockito.verify(adegaRepository).findById(adegaDeCasa.getId());
+    }
+
+
     private Adega createAdegaDeCasa() {
         return Adega.builder()
                 .id(1L)

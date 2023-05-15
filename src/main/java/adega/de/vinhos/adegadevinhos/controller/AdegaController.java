@@ -41,4 +41,10 @@ public class AdegaController {
     public ResponseEntity<Adega> save(@RequestBody @Valid AdegaDTO adegaDTO){
         return new ResponseEntity(adegaService.save(adegaDTO), HttpStatus.CREATED);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        adegaService.delete(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }

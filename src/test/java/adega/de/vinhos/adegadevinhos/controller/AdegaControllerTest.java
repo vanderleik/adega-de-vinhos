@@ -16,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -88,6 +90,20 @@ class AdegaControllerTest {
         assertEquals(adegaDeCasa.getId(), adegaCriada.getId());
         assertEquals(adegaDeCasa.getNome(), adegaCriada.getNome());
         assertEquals(adegaDeCasa.getCapacidade(), adegaCriada.getCapacidade());
+    }
+
+    @Test
+    @DisplayName("Deve deletar uma adega do banco ao passar um id, caso ela exista")
+    void testDelete(){
+        Adega adegaDeCasa = createAdegaDeCasa();
+        AdegaDTO dto = new AdegaDTO();
+        dto.setId(adegaDeCasa.getId());
+        dto.setNome(adegaDeCasa.getNome());
+        BDDMockito.doNothing().when(adegaService).delete(adegaDeCasa.getId());
+
+        ResponseEntity<Void> entity = assertDoesNotThrow(() -> adegaController.delete(adegaDeCasa.getId()));
+        assertNotNull(entity);
+        assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
     }
 
     private Adega createAdegaDeCasa() {
