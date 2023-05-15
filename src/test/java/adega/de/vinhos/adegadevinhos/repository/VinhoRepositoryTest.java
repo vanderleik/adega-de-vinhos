@@ -65,17 +65,17 @@ class VinhoRepositoryTest {
         Vinho vinhoSaved = assertDoesNotThrow(() -> vinhoRepository.save(vinhoToBeSaved));
         assertNotNull(vinhoSaved);
 
-        List<Vinho> vinhosRetorned = assertDoesNotThrow(() -> vinhoRepository.findByTipo(vinhoSaved.getTipo()));
-        assertFalse(vinhosRetorned.isEmpty());
-        assertNotNull(vinhosRetorned.get(0));
-        assertEquals(vinhoSaved.getTipo(), vinhosRetorned.get(0).getTipo());
+        List<Vinho> vinhosReturned = assertDoesNotThrow(() -> vinhoRepository.findByTipo(vinhoSaved.getTipo()));
+        assertFalse(vinhosReturned.isEmpty());
+        assertNotNull(vinhosReturned.get(0));
+        assertEquals(vinhoSaved.getTipo(), vinhosReturned.get(0).getTipo());
     }
 
     @Test
     void testFindByTipoDeveRetornarUmaListaVazia(){
-        List<Vinho> vinhosRetorned = assertDoesNotThrow(() -> vinhoRepository.findByTipo("Tinto"));
+        List<Vinho> vinhosReturned = assertDoesNotThrow(() -> vinhoRepository.findByTipo("Tinto"));
 
-        assertTrue(vinhosRetorned.isEmpty());
+        assertTrue(vinhosReturned.isEmpty());
     }
 
     @Test

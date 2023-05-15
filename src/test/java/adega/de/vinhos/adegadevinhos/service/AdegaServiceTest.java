@@ -113,6 +113,20 @@ class AdegaServiceTest {
         Mockito.verify(adegaRepository).save(adegaDeCasa);
     }
 
+    @Test
+    @DisplayName("Deve retornar uma lista")
+    void testFindByNome(){
+        String nome = "Adega de casa";
+        Mockito.when(adegaRepository.findByNome(nome)).thenReturn(List.of(createAdegaDeCasa()));
+
+        List<Adega> adegas = assertDoesNotThrow(() -> adegaService.findByNome(nome));
+        assertNotNull(adegas);
+        assertFalse(adegas.isEmpty());
+        assertEquals(createAdegaDeCasa().getId(), adegas.get(0).getId());
+        assertEquals(createAdegaDeCasa().getNome(), adegas.get(0).getNome());
+        assertEquals(createAdegaDeCasa().getCapacidade(), adegas.get(0).getCapacidade());
+    }
+
 
     private Adega createAdegaDeCasa() {
         return Adega.builder()

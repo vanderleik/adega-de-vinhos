@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("adegas")
@@ -52,5 +53,10 @@ public class AdegaController {
     public ResponseEntity<Adega> replace(@RequestBody AdegaDTO adegaDTO) {
         adegaService.replace(adegaDTO);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(path = "/nome")
+    public ResponseEntity<List<Adega>> findByNome(@RequestParam(required = false) String nome) {
+        return ResponseEntity.ok(adegaService.findByNome(nome));
     }
 }

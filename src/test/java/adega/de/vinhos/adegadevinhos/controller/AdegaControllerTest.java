@@ -20,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -118,6 +119,33 @@ class AdegaControllerTest {
         assertNotNull(adegaReplaced);
         assertEquals(HttpStatus.NO_CONTENT, adegaReplaced.getStatusCode());
     }
+
+    @Test
+    @DisplayName("Deve retornar uma lista não vazia")
+    void testFindByNome(){
+        String nome = "Adega do escritório";
+        BDDMockito.when(adegaService.findByNome(nome)).thenReturn(List.of(createAdegaDoEscritorio()));
+        List<Adega> adegas = assertDoesNotThrow(() -> adegaController.findByNome(nome).getBody());
+
+        assertNotNull(adegas);
+        assertFalse(adegas.isEmpty());
+        assertEquals(1, adegas.size());
+        assertEquals(createAdegaDoEscritorio().getId(), adegas.get(0).getId());
+        assertEquals(createAdegaDoEscritorio().getNome(), adegas.get(0).getNome());
+    }
+
+    @Test
+    @DisplayName("Deve retornar uma lista vazia")
+    void testFindByNomeInexistente() {
+        BDDMockito.when(adegaService.findByNome("")).thenReturn(Collections.emptyList());
+        List<Adega> adegas = assertDoesNotThrow(() -> adegaController.findByNome("").getBody());
+
+        assertNotNull(adegas);
+        assertTrue(adegas.isEmpty());
+        assertEquals(0, adegas.size());
+    }
+
+
 
     private Adega createAdegaDeCasa() {
         return Adega.builder()

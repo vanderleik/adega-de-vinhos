@@ -75,9 +75,26 @@ class AdegaRepositoryTest {
         assertEquals(adegaDaPraiaSaved.getNome(), adegaUpdated.getNome());
     }
 
+    @Test
+    @DisplayName("Deve retornar uma lista não vazia")
+    void testFindByNome(){
+        String nome = "Adega do escritório";
+        List<Adega> adegaReturned = assertDoesNotThrow(() -> adegaRepository.findByNome(nome));
+        assertFalse(adegaReturned.isEmpty());
+        assertNotNull(adegaReturned.get(0));
+        assertEquals(nome, adegaReturned.get(0).getNome());
+    }
+
+    @Test
+    @DisplayName("Deve retornar uma lista não vazia")
+    void testFindByNomeInexistente(){
+        String nome = "Adega Inexistente";
+        List<Adega> adegaReturned = assertDoesNotThrow(() -> adegaRepository.findByNome(nome));
+
+        assertTrue(adegaReturned.isEmpty());
+    }
 
     //TO-DO
-    //findByNome
     //listAllNonPageable
 
     private Adega createAdegaDeCasa() {

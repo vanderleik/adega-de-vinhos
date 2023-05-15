@@ -33,7 +33,5 @@ m
 =src/main/java/adega/de/vinhos/adegadevinhos/dto/AdegaDTO.java,0\3\034dde64b9ff3ab54a14a9ae3df079d8a0d2ecd3
 {
 Ksrc/main/java/adega/de/vinhos/adegadevinhos/repository/VinhoRepository.java,a\1\a1500cf7e33b3c506efba242967d82d0baee9758
-{
-Ksrc/main/java/adega/de/vinhos/adegadevinhos/repository/AdegaRepository.java,c\0\c085f741de23a795233d5b74f9082489bfe1f255
 y
 Isrc/test/java/adega/de/vinhos/adegadevinhos/service/VinhoServiceTest.java,f\7\f7e3047e78b714d347bc13420a75b44bee2dd992
