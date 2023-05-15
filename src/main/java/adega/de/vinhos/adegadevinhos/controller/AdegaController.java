@@ -59,4 +59,10 @@ public class AdegaController {
     public ResponseEntity<List<Adega>> findByNome(@RequestParam(required = false) String nome) {
         return ResponseEntity.ok(adegaService.findByNome(nome));
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Adega>> listAll() {
+        log.info(defaultUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        return ResponseEntity.ok(adegaService.listAllNonPageable());
+    }
 }

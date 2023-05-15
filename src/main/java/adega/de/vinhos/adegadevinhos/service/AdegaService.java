@@ -49,6 +49,7 @@ public class AdegaService {
         return adegaRepository.findByNome(nome);
     }
 
-    //To-do
-    //listAllNonPageable
+    public List<Adega> listAllNonPageable() {
+        return adegaRepository.findAll();
+    }
 }

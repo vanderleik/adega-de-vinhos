@@ -94,9 +94,6 @@ class AdegaRepositoryTest {
         assertTrue(adegaReturned.isEmpty());
     }
 
-    //TO-DO
-    //listAllNonPageable
-
     private Adega createAdegaDeCasa() {
         return Adega.builder()
                 .id(1L)

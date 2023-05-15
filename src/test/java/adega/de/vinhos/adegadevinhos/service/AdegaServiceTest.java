@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -127,6 +128,25 @@ class AdegaServiceTest {
         assertEquals(createAdegaDeCasa().getCapacidade(), adegas.get(0).getCapacidade());
     }
 
+    @Test
+    @DisplayName("Deve retornar uma lista da adegas")
+    void testListAllNonPageable() {
+        List<Adega> list = Arrays.asList(createAdegaDeCasa(), createAdegaDoEscritorio(), createAdegaDaPraia());
+        Mockito.when(adegaRepository.findAll()).thenReturn(list);
+
+        List<Adega> adegas = assertDoesNotThrow(() -> adegaService.listAllNonPageable());
+        assertNotNull(adegas);
+        assertFalse(adegas.isEmpty());
+        assertEquals(list.get(0).getId(), adegas.get(0).getId());
+        assertEquals(list.get(0).getNome(), adegas.get(0).getNome());
+        assertEquals(list.get(0).getCapacidade(), adegas.get(0).getCapacidade());
+        assertEquals(list.get(1).getId(), adegas.get(1).getId());
+        assertEquals(list.get(1).getNome(), adegas.get(1).getNome());
+        assertEquals(list.get(1).getCapacidade(), adegas.get(1).getCapacidade());
+        assertEquals(list.get(2).getId(), adegas.get(2).getId());
+        assertEquals(list.get(2).getNome(), adegas.get(2).getNome());
+        assertEquals(list.get(2).getCapacidade(), adegas.get(2).getCapacidade());
+    }
 
     private Adega createAdegaDeCasa() {
         return Adega.builder()

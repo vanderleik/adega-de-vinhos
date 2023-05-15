@@ -20,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -145,7 +146,27 @@ class AdegaControllerTest {
         assertEquals(0, adegas.size());
     }
 
+    @Test
+    @DisplayName("Deve retornar uma lista de adegas")
+    void testFindAllNonPageable(){
+        List<Adega> list = Arrays.asList(createAdegaDeCasa(), createAdegaDoEscritorio(), createAdegaDaPraia());
+        BDDMockito.when(adegaService.listAllNonPageable()).thenReturn(list);
 
+        List<Adega> listResponseEntity = assertDoesNotThrow(() -> adegaController.listAll().getBody());
+        BDDMockito.verify(defaultUtil).formatLocalDateTimeToDatabaseStyle(ArgumentMatchers.any());
+        assertNotNull(listResponseEntity);
+        assertFalse(listResponseEntity.isEmpty());
+        assertEquals(3, listResponseEntity.size());
+        assertEquals(list.get(0).getId(), listResponseEntity.get(0).getId());
+        assertEquals(list.get(0).getNome(), listResponseEntity.get(0).getNome());
+        assertEquals(list.get(0).getCapacidade(), listResponseEntity.get(0).getCapacidade());
+        assertEquals(list.get(1).getId(), listResponseEntity.get(1).getId());
+        assertEquals(list.get(1).getNome(), listResponseEntity.get(1).getNome());
+        assertEquals(list.get(1).getCapacidade(), listResponseEntity.get(1).getCapacidade());
+        assertEquals(list.get(2).getId(), listResponseEntity.get(2).getId());
+        assertEquals(list.get(2).getNome(), listResponseEntity.get(2).getNome());
+        assertEquals(list.get(2).getCapacidade(), listResponseEntity.get(2).getCapacidade());
+    }
 
     private Adega createAdegaDeCasa() {
         return Adega.builder()
