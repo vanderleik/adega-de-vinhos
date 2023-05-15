@@ -11,8 +11,6 @@ m
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ‰
 Ysrc/main/java/adega/de/vinhos/adegadevinhos/configurer/AdegaDeVinhosWebMvcConfigurer.java,7\6\76b6d8892e1ffd734b482cae4c6a651337f62569
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 ~
 Nsrc/test/java/adega/de/vinhos/adegadevinhos/AdegaDeVinhosApplicationTests.java,1\a\1adf31e23f5978b2f9b0da6bf26ff4d5d8c67aad
 m
@@ -25,8 +23,6 @@ s
 Csrc/main/java/adega/de/vinhos/adegadevinhos/mapper/AdegaMapper.java,3\a\3a47e0d35c55fb377b44b84157aeeecf56085202
 s
 Csrc/main/java/adega/de/vinhos/adegadevinhos/mapper/VinhoMapper.java,c\a\caceb6f76352809bf68253efb0cc9d1c3a21c9d4
-y
-Isrc/main/java/adega/de/vinhos/adegadevinhos/AdegaDeVinhosApplication.java,d\8\d8579d53875ad4ad315deb585d364c80e19c70a4
 m
 =src/main/java/adega/de/vinhos/adegadevinhos/dto/AdegaDTO.java,0\3\034dde64b9ff3ab54a14a9ae3df079d8a0d2ecd3
 {
