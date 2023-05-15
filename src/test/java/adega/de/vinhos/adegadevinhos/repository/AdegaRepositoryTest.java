@@ -63,9 +63,20 @@ class AdegaRepositoryTest {
         assertTrue(adega.isEmpty());
     }
 
+    @Test
+    @DisplayName("Deve alterar os dados de uma adega do banco ao passar um id, caso ela exista")
+    void testReplace(){
+        adegaDaPraiaSaved.setNome("Nome da Adega alterado");
+        Adega adegaUpdated = assertDoesNotThrow(() -> adegaRepository.save(adegaDaPraiaSaved));
+
+        assertNotNull(adegaUpdated);
+        assertNotNull(adegaUpdated.getId());
+        assertNotNull(adegaUpdated.getNome());
+        assertEquals(adegaDaPraiaSaved.getNome(), adegaUpdated.getNome());
+    }
+
 
     //TO-DO
-    //replace
     //findByNome
     //listAllNonPageable
 

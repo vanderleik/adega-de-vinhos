@@ -106,6 +106,19 @@ class AdegaControllerTest {
         assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
     }
 
+    @Test
+    @DisplayName("Deve alterar os dados de uma adega do banco ao passar um id, caso ela exista")
+    void testReplace(){
+        AdegaDTO dto = new AdegaDTO();
+        dto.setId(4L);
+        dto.setNome("Nova Adega");
+        BDDMockito.doNothing().when(adegaService).replace(ArgumentMatchers.any(AdegaDTO.class));
+
+        ResponseEntity<Adega> adegaReplaced = assertDoesNotThrow(() -> adegaController.replace(dto));
+        assertNotNull(adegaReplaced);
+        assertEquals(HttpStatus.NO_CONTENT, adegaReplaced.getStatusCode());
+    }
+
     private Adega createAdegaDeCasa() {
         return Adega.builder()
                 .id(1L)

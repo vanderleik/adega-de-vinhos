@@ -47,4 +47,10 @@ public class AdegaController {
         adegaService.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    @PutMapping
+    public ResponseEntity<Adega> replace(@RequestBody AdegaDTO adegaDTO) {
+        adegaService.replace(adegaDTO);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }

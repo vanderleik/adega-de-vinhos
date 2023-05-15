@@ -99,6 +99,20 @@ class AdegaServiceTest {
         Mockito.verify(adegaRepository).findById(adegaDeCasa.getId());
     }
 
+    @Test
+    @DisplayName("Deve alterar os dados de uma adega do banco ao passar um id, caso ela exista")
+    void testReplace(){
+        Adega adegaDeCasa = createAdegaDeCasa();
+        AdegaDTO adegaDeCasaDto = new AdegaDTO();
+        adegaDeCasaDto.setId(adegaDeCasa.getId());
+        adegaDeCasaDto.setNome(adegaDeCasa.getNome());
+        adegaDeCasaDto.setCapacidade(adegaDeCasa.getCapacidade());
+
+        Mockito.when(adegaRepository.findById(adegaDeCasaDto.getId())).thenReturn(Optional.of(adegaDeCasa));
+        assertDoesNotThrow(() -> adegaService.replace(adegaDeCasaDto));
+        Mockito.verify(adegaRepository).save(adegaDeCasa);
+    }
+
 
     private Adega createAdegaDeCasa() {
         return Adega.builder()

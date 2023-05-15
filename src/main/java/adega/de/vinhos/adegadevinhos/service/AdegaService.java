@@ -36,8 +36,14 @@ public class AdegaService {
         adegaRepository.delete(findByIdOrThrowBadRequestException(id));
     }
 
+    public void replace(AdegaDTO adegaDTO) {
+        Adega savedAdega = findByIdOrThrowBadRequestException(adegaDTO.getId());
+        Adega adega = AdegaMapper.INSTANCE.toAdega(adegaDTO);
+        adega.setId(savedAdega.getId());
+        adegaRepository.save(adega);
+    }
+
     //To-do
-    //replace
     //findByNome
     //listAllNonPageable
 }
