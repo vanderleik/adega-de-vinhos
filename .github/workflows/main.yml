@@ -30,14 +30,13 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Flyway Migration
-        uses: joshuaavalon/flyway-action@v3.0.0
+      - name: Flyway-migration-action
+        uses: rahulmalewadi/flyway-custom-action@v1.0.0
         with:
-          url: ${{ secrets.DB_BUILD_URL }}
-          user: ${{ secrets.DB_BUILD_USERNAME }}
-          password: ${{ secrets.DB_BUILD_PASSWORD }}
-          locations: filesystem:.db/migration
-      - run: echo 'testing'
+          url: DB_BUILD_URL
+          user: DB_BUILD_USERNAME
+          password: DB_BUILD_PASSWORD
+          locations: filesystem:./sql
 
       #      - name: start mysql
       #        run: sudo /etc/init.d/mysql start
