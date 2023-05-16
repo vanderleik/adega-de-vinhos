@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'feature/av004'
 
 jobs:
   build:
@@ -30,6 +29,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          # O Flyway migration não funciona com o Java 17, motivo pelo qual quebrava o build.
 #      - name: Flyway-migration-action
 #        uses: rahulmalewadi/flyway-custom-action@v1.0.0
 #        with:
