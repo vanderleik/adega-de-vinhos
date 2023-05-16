@@ -118,7 +118,6 @@ class VinhoControllerTest {
 
     @Test
     void testReplaceDeveAlterarERetornarNoContent(){
-        Vinho vinhoSaved = createValidVinhoBranco();
         VinhoDTO dto = new VinhoDTO();
         dto.setId(4L);
         dto.setTipo("Rose");

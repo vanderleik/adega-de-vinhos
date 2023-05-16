@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>adega.de.vinhos</groupId>
 	<artifactId>adega-de-vinhos</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>adega-de-vinhos</name>
 	<description>Project de adega de vinhos usando o Spring Boot</description>
 	<properties>
@@ -26,9 +26,13 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.32</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -79,6 +83,9 @@
 								<include>**/*Test.*</include>
 								<include>**/*It.*</include>
 							</includes>
+							<excludes>
+								<exclude>**/AdegaDeVinhosApplicationTests.*</exclude>
+							</excludes>
 						</configuration>
 					</plugin>
 				</plugins>

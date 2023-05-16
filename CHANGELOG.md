@@ -25,6 +25,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 *
 
+## [0.0.3] - 2023-12-05
+
+### Added
+* Replicação de dados com FlyWay
+* Entidade Adega
+
+### Changed
+* Alterado o banco de dados de MySql para PostgreSQL
+
+### Deprecated
+*
+
+### Removed
+*
+
+### Fixed
+*
+
+### Security
+*
+
 ## [0.0.2] - 2023-11-05
 
 ### Changed

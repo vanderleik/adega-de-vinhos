@@ -5,8 +5,8 @@ import adega.de.vinhos.adegadevinhos.dto.VinhoDTO;
 import adega.de.vinhos.adegadevinhos.service.VinhoService;
 import adega.de.vinhos.adegadevinhos.util.DateUtil;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -19,11 +19,12 @@ import java.util.List;
 @RestController
 @RequestMapping("vinhos")
 @Log4j2
-@RequiredArgsConstructor
 public class VinhoController {
 
-    private final DateUtil defaultUtil;
-    private final VinhoService vinhoService;
+    @Autowired
+    private DateUtil defaultUtil;
+    @Autowired
+    private VinhoService vinhoService;
 
     @GetMapping
     public ResponseEntity<Page<Vinho>> list(Pageable pageable) {
