@@ -31,13 +31,13 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           architecture: x64
-      - name: Flyway-migration-action
-        uses: rahulmalewadi/flyway-custom-action@v1.0.0
-        with:
-          url: DB_BUILD_URL
-          user: DB_BUILD_USERNAME
-          password: DB_BUILD_PASSWORD
-          locations: filesystem:./sql
+#      - name: Flyway-migration-action
+#        uses: rahulmalewadi/flyway-custom-action@v1.0.0
+#        with:
+#          url: DB_BUILD_URL
+#          user: DB_BUILD_USERNAME
+#          password: DB_BUILD_PASSWORD
+#          locations: filesystem:./sql
 
       #      - name: start mysql
       #        run: sudo /etc/init.d/mysql start
