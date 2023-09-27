@@ -51,3 +51,11 @@ Osrc/test/java/adega/de/vinhos/adegadevinhos/controller/AdegaControllerTest.java
 Nsrc/test/java/adega/de/vinhos/adegadevinhos/integration/AdegaControllerIt.java,0\3\03c8ea1b30ccc61f4d9b7e2fbca88d5a084a81c4
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+~
+Nsrc/test/java/adega/de/vinhos/adegadevinhos/AdegaDeVinhosApplicationTests.java,1\a\1adf31e23f5978b2f9b0da6bf26ff4d5d8c67aad
+y
+Isrc/main/java/adega/de/vinhos/adegadevinhos/AdegaDeVinhosApplication.java,d\8\d8579d53875ad4ad315deb585d364c80e19c70a4
+B
+docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
+J
+.github/workflows/main.yml,c\7\c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0
